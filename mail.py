@@ -26,21 +26,18 @@ with smtplib.SMTP_SSL(smtp_server, port) as server:
         username = sheet.cell(row=i, column=7).value
         password = sheet.cell(row=i, column=8).value
         subject = "Here are your login credentials"
-        if name2 == 'None':
-        	body1 = f"Good morning, {name1}. Thank you for registering in NCC 2020."
-        	body2 = f"\nHere are your login credentials. Username:- {username} and Password:- {password}."
-        	body3 = f"\nWe hope you will enjoy our event"
-        	message = f'Subject: {subject}\n\n{body1}{body2}{body3}' 
+        if name2 == 'None' or name2=='':
+        	body = f"Hi {name1}!\nThank you for registering in the National Computing Contest 2020.\n\nHere are your login credentials:\nUsername - {username}\nPassword - {password}\n\nBefore logging in, it would be beneficial to go over some general instructions:\n1. The contest is best viewed in full-screen and 1366x768 resolution settings. We suggest that you change your display settings temporarily, in order to enhance your experience.\n2. Make sure you have a stable internet connection for the next two hours.\n3. Refreshing the page at any point during the game will cause loss of your data, which cannot be retrieved. We thereby advice you to abstain from such practices.\n\nPlease share these credentials with your teammate as well. Happy coding!\nSee you on the leaderboard!"
+        	message = f'Subject: {subject}\n\n{body}' 
         else:
-        	body1 = f"Good morning, {name1} and {name2}. Thank you for registering in NCC 2020."
-        	body2 = f"\nHere are your login credentials. Username:- {username} and Password:- {password}."
-        	body3 = f"\nWe hope you will enjoy our event"
-        	message = f'Subject: {subject}\n\n{body1}{body2}{body3}'
+        	body = f"Hi {name1} and {name2}!\nThank you for registering in the National Computing Contest 2020.\n\nHere are your login credentials:\nUsername - {username}\nPassword - {password}\n\nBefore logging in, it would be beneficial to go over some general instructions:\n1. The contest is best viewed in full-screen and 1366x768 resolution settings. We suggest that you change your display settings temporarily, in order to enhance your experience.\n2. Make sure you have a stable internet connection for the next two hours.\n3. Refreshing the page at any point during the game will cause loss of your data, which cannot be retrieved. We thereby advice you to abstain from such practices.\n\nPlease share these credentials with your teammate as well. Happy coding!\nSee you on the leaderboard!"
+        	message = f'Subject: {subject}\n\n{body}'
         
         server.sendmail(
             sender, r_email, message
         )
         print("Email sent to "+r_email)
+        
         
         
         
